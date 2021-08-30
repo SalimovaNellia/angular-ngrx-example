@@ -9,6 +9,8 @@ import { BackendErrorMessagesModule } from 'src/app/shared/modules/backend-error
 import { PersistenceService } from 'src/app/shared/services/persistence.service';
 import { RegisterComponent } from 'src/app/auth/register/register.component';
 import { RegisterEffect } from 'src/app/auth/store/effects/register.effect';
+import { LoginEffect } from 'src/app/auth/store/effects/login.effect';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { reducers } from 'src/app/auth/store/reducers';
 
@@ -16,12 +18,17 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
     imports: [
         CommonModule,
@@ -29,7 +36,7 @@ const routes: Routes = [
         ReactiveFormsModule,
 
         StoreModule.forFeature('auth', reducers),
-        EffectsModule.forFeature([RegisterEffect]),
+        EffectsModule.forFeature([RegisterEffect, LoginEffect]),
         BackendErrorMessagesModule
     ],
   providers: [
